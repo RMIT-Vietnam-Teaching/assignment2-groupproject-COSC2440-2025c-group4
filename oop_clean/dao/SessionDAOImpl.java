@@ -21,7 +21,8 @@ public class SessionDAOImpl implements SessionDAO {
     // Retrieve a specific session by its ID
     public Optional<Session> findById(String sessionId) throws Exception {
         String sql = "SELECT session_id, event_id, title, description, scheduled_timestamp, venue, capacity FROM sessions WHERE session_id = ?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, sessionId);
             try (ResultSet rs = p.executeQuery()) {
                 if (rs.next()) {
@@ -39,7 +40,8 @@ public class SessionDAOImpl implements SessionDAO {
     public List<Session> findByEventId(String eventId) throws Exception {
         List<Session> list = new ArrayList<>();
         String sql = "SELECT session_id, event_id, title, description, scheduled_timestamp, venue, capacity FROM sessions WHERE event_id = ?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, eventId);
             try (ResultSet rs = p.executeQuery()) {
                 while (rs.next()) {
@@ -57,7 +59,8 @@ public class SessionDAOImpl implements SessionDAO {
     public List<Session> findAll() throws Exception {
         List<Session> list = new ArrayList<>();
         String sql = "SELECT session_id, event_id, title, description, scheduled_timestamp, venue, capacity FROM sessions";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             try (ResultSet rs = p.executeQuery()) {
                 while (rs.next()) {
                     Session s = new Session(rs.getString(1), rs.getString(3), rs.getString(4),
@@ -73,7 +76,8 @@ public class SessionDAOImpl implements SessionDAO {
     @Override
     public void insert(Session s) throws Exception {
         String sql = "INSERT INTO sessions(session_id, event_id, title, description, scheduled_timestamp, venue, capacity) VALUES (?,?,?,?,?,?,?)";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, s.getSessionId());
             p.setString(2, ""); // eventId would come from a related entity
             p.setString(3, s.getTitle());
@@ -88,7 +92,8 @@ public class SessionDAOImpl implements SessionDAO {
     @Override
     public void update(Session s) throws Exception {
         String sql = "UPDATE sessions SET title=?, description=?, scheduled_timestamp=?, venue=?, capacity=? WHERE session_id=?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, s.getTitle());
             p.setString(2, s.getDescription());
             if (s.getScheduledDateTime() != null) p.setTimestamp(3, Timestamp.valueOf(s.getScheduledDateTime())); else p.setTimestamp(3, null);
@@ -102,7 +107,8 @@ public class SessionDAOImpl implements SessionDAO {
     @Override
     public void delete(String sessionId) throws Exception {
         String sql = "DELETE FROM sessions WHERE session_id = ?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, sessionId);
             p.executeUpdate();
         }

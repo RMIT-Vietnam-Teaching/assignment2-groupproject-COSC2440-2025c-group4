@@ -21,7 +21,8 @@ public class TicketDAOImpl implements TicketDAO {
     // Retrieve a specific ticket by ID
     public Optional<Ticket> findById(String ticketId) throws Exception {
         String sql = "SELECT ticket_id, attendee_id, event_id, session_id, type, price, status, qr FROM tickets WHERE ticket_id = ?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, ticketId);
             try (ResultSet rs = p.executeQuery()) {
                 if (rs.next()) {
@@ -38,7 +39,8 @@ public class TicketDAOImpl implements TicketDAO {
     public List<Ticket> findByAttendeeId(String attendeeId) throws Exception {
         List<Ticket> list = new ArrayList<>();
         String sql = "SELECT ticket_id, attendee_id, event_id, session_id, type, price, status, qr FROM tickets WHERE attendee_id = ?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, attendeeId);
             try (ResultSet rs = p.executeQuery()) {
                 while (rs.next()) {
@@ -55,7 +57,8 @@ public class TicketDAOImpl implements TicketDAO {
     public List<Ticket> findAll() throws Exception {
         List<Ticket> list = new ArrayList<>();
         String sql = "SELECT ticket_id, attendee_id, event_id, session_id, type, price, status, qr FROM tickets";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             try (ResultSet rs = p.executeQuery()) {
                 while (rs.next()) {
                     Ticket t = new Ticket(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
@@ -70,7 +73,8 @@ public class TicketDAOImpl implements TicketDAO {
     @Override
     public void insert(Ticket t) throws Exception {
         String sql = "INSERT INTO tickets(ticket_id, attendee_id, event_id, session_id, type, price, status, qr) VALUES (?,?,?,?,?,?,?,?)";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, t.getTicketId());
             p.setString(2, t.getAttendeeId());
             p.setString(3, t.getEventId());
@@ -86,7 +90,8 @@ public class TicketDAOImpl implements TicketDAO {
     @Override
     public void update(Ticket t) throws Exception {
         String sql = "UPDATE tickets SET attendee_id=?, event_id=?, session_id=?, type=?, price=?, status=?, qr=? WHERE ticket_id=?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, t.getAttendeeId());
             p.setString(2, t.getEventId());
             p.setString(3, t.getSessionId());
@@ -102,7 +107,8 @@ public class TicketDAOImpl implements TicketDAO {
     @Override
     public void delete(String ticketId) throws Exception {
         String sql = "DELETE FROM tickets WHERE ticket_id = ?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, ticketId);
             p.executeUpdate();
         }

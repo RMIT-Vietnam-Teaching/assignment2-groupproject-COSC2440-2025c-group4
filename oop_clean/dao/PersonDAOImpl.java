@@ -19,7 +19,8 @@ public class PersonDAOImpl implements PersonDAO {
     // Search for a person by username (used during login)
     public Optional<Person> findByUsername(String username) throws Exception {
         String sql = "SELECT person_id, full_name, dob, contact, username, password, role FROM persons WHERE username = ?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, username);
             try (ResultSet rs = p.executeQuery()) {
                 if (rs.next()) {
@@ -41,7 +42,8 @@ public class PersonDAOImpl implements PersonDAO {
     @Override
     public void insert(Person p) throws Exception {
         String sql = "INSERT INTO persons(person_id, full_name, dob, contact, username, password, role) VALUES (?,?,?,?,?,?,?)";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, p.getPersonId());
             ps.setString(2, p.getFullName());
             if (p.getDob() != null) ps.setDate(3, java.sql.Date.valueOf(p.getDob())); else ps.setDate(3, null);

@@ -21,7 +21,8 @@ public class EventDAOImpl implements EventDAO {
     // Retrieve a specific event by ID
     public Optional<Event> findById(String eventId) throws Exception {
         String sql = "SELECT event_id, name, type, start_date, location, status FROM events WHERE event_id = ?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, eventId);
             try (ResultSet rs = p.executeQuery()) {
                 if (rs.next()) {
@@ -38,7 +39,8 @@ public class EventDAOImpl implements EventDAO {
     public List<Event> findAll() throws Exception {
         List<Event> list = new ArrayList<>();
         String sql = "SELECT event_id, name, type, start_date, location, status FROM events";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             try (ResultSet rs = p.executeQuery()) {
                 while (rs.next()) {
                     Event e = new Event(rs.getString(1), rs.getString(2), rs.getString(3),
@@ -53,7 +55,8 @@ public class EventDAOImpl implements EventDAO {
     @Override
     public void insert(Event e) throws Exception {
         String sql = "INSERT INTO events(event_id, name, type, start_date, location, status) VALUES (?,?,?,?,?,?)";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, e.getEventId());
             p.setString(2, e.getName());
             p.setString(3, e.getType());
@@ -67,7 +70,8 @@ public class EventDAOImpl implements EventDAO {
     @Override
     public void update(Event e) throws Exception {
         String sql = "UPDATE events SET name=?, type=?, start_date=?, location=?, status=? WHERE event_id=?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, e.getName());
             p.setString(2, e.getType());
             p.setString(3, e.getDate());
@@ -81,7 +85,8 @@ public class EventDAOImpl implements EventDAO {
     @Override
     public void delete(String eventId) throws Exception {
         String sql = "DELETE FROM events WHERE event_id = ?";
-        try (Connection c = DatabaseConfig.getInstance().getConnection(); PreparedStatement p = c.prepareStatement(sql)) {
+        Connection c = DatabaseConfig.getInstance().getConnection();
+        try (PreparedStatement p = c.prepareStatement(sql)) {
             p.setString(1, eventId);
             p.executeUpdate();
         }
