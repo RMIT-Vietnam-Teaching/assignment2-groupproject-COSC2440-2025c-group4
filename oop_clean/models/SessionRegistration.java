@@ -1,9 +1,9 @@
 
-package oop_clean;
+package oop_clean.models;
 import java.time.LocalDateTime;
 
 /**
- * @author 
+ * @author Group04
  */
 public class SessionRegistration {
     private final String sessionRegistrationId; 

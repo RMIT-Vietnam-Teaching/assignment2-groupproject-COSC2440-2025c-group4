@@ -1,7 +1,10 @@
-package oop_clean;
+package oop_clean.models;
 
 /**
- * @author 
+ * Represents an event in the system (conference, workshop, seminar, etc.).
+ * Events contain multiple sessions and can be registered for by attendees.
+ * 
+ * @author Group04
  */
 public class Event {
     private final String eventId; 

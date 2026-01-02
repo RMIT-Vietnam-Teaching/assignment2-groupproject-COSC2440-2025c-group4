@@ -1,7 +1,10 @@
 
-package oop_clean;
+package oop_clean.models;
 /**
- * @author 
+ * Represents a ticket for an attendee to access an event or session.
+ * Tracks ticket type, price, and status (ACTIVE, USED, CANCELLED).
+ * 
+ * @author Group04
  */
 public class Ticket {
     private final String ticketId; 

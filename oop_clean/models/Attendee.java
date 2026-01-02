@@ -1,8 +1,8 @@
-package oop_clean;
+package oop_clean.models;
 import java.time.LocalDate;
 
 /**
- * @author <your group number>
+     * @author Group04
  */
 public class Attendee extends Person {
     public Attendee(String personId, String fullName, LocalDate dob, String contact,

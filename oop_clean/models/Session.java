@@ -1,9 +1,13 @@
 
-package oop_clean;
+package oop_clean.models;
 import java.time.LocalDateTime;
 
 /**
- * @author 
+ * Represents a session within an event.
+ * A session has a specific time, venue, and capacity.
+ * Multiple attendees can register for a session.
+ * 
+ * @author Group04
  */
 public class Session {
     private final String sessionId; 

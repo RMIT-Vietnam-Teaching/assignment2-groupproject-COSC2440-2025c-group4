@@ -1,9 +1,9 @@
 
-package oop_clean;
+package oop_clean.models;
 import java.time.LocalDate;
 
 /**
- * @author
+ * @author Group04
  */
 public class Presenter extends Person {
     private String presenterRole; 

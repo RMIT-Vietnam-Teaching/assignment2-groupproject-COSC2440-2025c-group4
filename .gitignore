@@ -1,3 +1,11 @@
+target/
+.idea/
+*.class
+*.jar
+.classpath
+.project
+out/
+*.iml
 # Logs
 logs
 *.log

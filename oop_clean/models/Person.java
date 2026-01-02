@@ -1,16 +1,26 @@
-package oop_clean;
+package oop_clean.models;
 import java.time.LocalDate;
 
 /**
- * @author 
+ * Represents a user in the event management system.
+ * Can be an attendee, presenter, or admin.
+ * 
+ * @author Group04
  */
 public class Person {
+    // Unique identifier for this person
     private final String personId;  
+    // Full name of the person
     private String fullName;
+    // Date of birth
     private LocalDate dob;
+    // Contact information (email or phone)
     private String contact;         
+    // Login username
     private String username;
+    // Login password (hashed in production)
     private String password;
+    // Role in the system (ATTENDEE, PRESENTER, or ADMIN)
     private Role role;
 
     public Person(String personId, String fullName, LocalDate dob, String contact,

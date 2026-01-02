@@ -1,9 +1,9 @@
-package oop_clean;
+package oop_clean.models;
 
 import java.time.LocalDateTime;
 
 /**
- * @author 
+ * @author Group04
  */
 public class EventRegistration {
     private final String registrationId; 

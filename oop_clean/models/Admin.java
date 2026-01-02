@@ -1,8 +1,8 @@
-package oop_clean;
+package oop_clean.models;
 import java.time.LocalDate;
 
 /**
- * @author 
+ * @author Group04
  */
 public class Admin extends Person {
     private String adminRole; 

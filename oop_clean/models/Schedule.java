@@ -1,9 +1,9 @@
 
-package oop_clean;
+package oop_clean.models;
 import java.util.List;
 
 /**
- * @author 
+ * @author Group04
  */
 public class Schedule {
 
