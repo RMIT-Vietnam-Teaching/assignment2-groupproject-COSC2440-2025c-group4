@@ -16,7 +16,7 @@ import oop_clean.models.TicketStatus;
  * @author Group04
  */
 public class TicketService {
-    private TicketDAO ticketDAO = new TicketDAOImpl();
+    private final TicketDAO ticketDAO = new TicketDAOImpl();
 
     // Create a new ticket for an attendee to access an event/session
     public Ticket generateTicket(String type, double price, String attendeeId, String eventId, String sessionId) throws Exception {

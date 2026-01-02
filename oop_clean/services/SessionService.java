@@ -16,7 +16,7 @@ import oop_clean.models.Session;
  * @author Group04
  */
 public class SessionService {
-    private SessionDAO sessionDAO = new SessionDAOImpl();
+    private final SessionDAO sessionDAO = new SessionDAOImpl();
 
     // Create a new session with the provided details
     public Session createSession(String title, String description, LocalDateTime scheduledDateTime, 

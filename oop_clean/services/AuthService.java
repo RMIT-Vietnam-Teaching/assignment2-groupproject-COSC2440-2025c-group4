@@ -12,7 +12,7 @@ import oop_clean.models.Person;
  * @author Group04
  */
 public class AuthService {
-    private PersonDAO personDAO = new PersonDAOImpl();
+    private final PersonDAO personDAO = new PersonDAOImpl();
 
     // Authenticate a user - verify username and password match
     public Optional<Person> authenticate(String username, String password) throws Exception {

@@ -16,7 +16,7 @@ import oop_clean.models.EventStatus;
  * @author Group04
  */
 public class EventService {
-    private EventDAO eventDAO = new EventDAOImpl();
+    private final EventDAO eventDAO = new EventDAOImpl();
 
     // Create a new event with the provided details
     public Event createEvent(String name, String type, String date, String location) throws Exception {

@@ -14,7 +14,7 @@ public class MainApp {
             System.out.println("Database initialized. Backend ready.");
         } catch (Exception e) {
             System.err.println("Failed to initialize DB: " + e.getMessage());
-            e.printStackTrace();
+            e.printStackTrace(System.err);
             System.exit(1);
         }
     }

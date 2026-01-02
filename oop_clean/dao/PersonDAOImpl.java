@@ -30,7 +30,6 @@ public class PersonDAOImpl implements PersonDAO {
                     String user = rs.getString(5);
                     String pass = rs.getString(6);
                     // role parsing is left simple for now
-                    String role = rs.getString(7);
                     Person pObj = new Person(id, fullName, dob, contact, user, pass, null);
                     return Optional.of(pObj);
                 }
