@@ -1,4 +1,4 @@
-package oop_clean.core;
+package core;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
